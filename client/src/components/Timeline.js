@@ -2,28 +2,7 @@ import React, { useState } from 'react';
 import HorizontalTimeline from 'react-horizontal-timeline';
 import { convertYearString, timelineBCFormat } from '../util/constants';
 
-const Timeline = ({ index, onChange, years }) => {
-  // Generate an array of years with intermediate years included
-  const extendedYears = years.reduce((acc, year, idx) => {
-    // If it's the last year, return the accumulated years
-    if (idx === years.length - 1) return acc;
-    
-    // Push the current year
-    acc.push(year);
-    
-    // Add intermediate years
-    for (let i = year + 1; i < years[idx + 1]; i++) {
-      acc.push(i);
-    }
-    
-    return acc;
-  }, []);
-
-  // value = current timeline index. useState hook
-  // setvalue = update timeline index
-  // previous = previous timeline index
-  // setprevious = set previous timeline index
-
+const Timeline = ({ index, onChange, years, timelineInfo}) => {
   return (
     // <div className="timeline" style={{ position: 'relative', bottom: '0', width: '100%' }}>
       <div 
@@ -37,6 +16,15 @@ const Timeline = ({ index, onChange, years }) => {
             overflowX: 'hidden' 
         }}
       >
+        <div style={{ textAlign: 'center', marginBottom: '10px' }}>
+        {timelineInfo && (
+          <>
+            <h2 style={{ color: '#8B5E3C', fontFamily: 'Georgia, serif' }}>{timelineInfo.headline}</h2>
+            <p>{timelineInfo.text}</p>
+            {timelineInfo.image && <img src={timelineInfo.image} alt={timelineInfo.headline} style={{ maxWidth: '100%', height: '100px' }} />}
+          </>
+        )}
+      </div>
       <div
         style={{
             width: '96%',
@@ -82,7 +70,7 @@ const Timeline = ({ index, onChange, years }) => {
       </div>
       <div style={{ textAlign: 'center', marginTop: '20px' }}>
         <h2 style={{ color: '#8B5E3C', fontFamily: 'Georgia, serif' }}>
-          Currently Viewing: <span style={{ color: '#3C2F2F' }}>{extendedYears[index]}</span>
+          Currently Viewing: <span style={{ color: '#3C2F2F' }}>{years[index]}</span>
         </h2>
       </div>
     </div>
