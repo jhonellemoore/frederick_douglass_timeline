@@ -1,0 +1,20 @@
+.sidebar-container{
+    width: 270px;
+    background-color: #d7c0ad;
+    position: absolute;
+    height: 155vh;
+    padding: 0 30px; /* top = 0, l and r = 30*/
+    transition: all 1s;
+    z-index: 10;
+    position: fixed;
+    overflow-y: auto;
+}
+
+.text-overlay {
+    text-align: 'center'; 
+    margin-bottom: 10px;
+    width: 90%; 
+    font-family: "Cantata One", serif;
+    font-size: 12px; /* Decrease font size to 12px */
+    line-height: 1.6;
+  }
