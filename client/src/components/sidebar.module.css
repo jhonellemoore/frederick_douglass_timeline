@@ -1,20 +1,23 @@
 .sidebar-container{
     width: 270px;
-    background-color: #d7c0ad;
-    position: absolute;
+    background-color: #ffff;
     height: 155vh;
     padding: 0 30px; /* top = 0, l and r = 30*/
     transition: all 1s;
-    z-index: 10;
-    position: fixed;
+    z-index: 12;
+    left: 0;
+    top: 0;
+    position: absolute;
     overflow-y: auto;
+    scroll-behavior: smooth;
+    height: 100vh;
 }
 
 .text-overlay {
-    text-align: 'center'; 
+    text-align: center; /* Removed quotes */
     margin-bottom: 10px;
-    width: 90%; 
+    width: 90%;
     font-family: "Cantata One", serif;
-    font-size: 12px; /* Decrease font size to 12px */
+    font-size: 12px; /* Decreased font size to 12px */
     line-height: 1.6;
-  }
+}

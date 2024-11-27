@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import HorizontalTimeline from 'react-horizontal-timeline';
 import styles from '../components/timeline.module.css';
 import Sidebar from './Sidebar';
+import TimelineMap from './TimelineMap';
 
-const Timeline = ({ index, onChange, years, timelineInfo}) => {
+const Timeline = ({ index, onChange, years, fredInfo, events}) => {
   return (
     <div>
-      <Sidebar timelineInfo={timelineInfo}/>
+      <TimelineMap fredInfo = {fredInfo} events = {events}/>
+      <Sidebar fredInfo={fredInfo} events = {events} />
       <div className={styles['timeline-container']}>
         <div className={styles['timeline']}>
           <HorizontalTimeline
@@ -20,7 +22,7 @@ const Timeline = ({ index, onChange, years, timelineInfo}) => {
             }}
 
             index={index}
-            indexClick={(newIndex) => { // function receives new index when an index is clicked
+            indexClick={(newIndex) => { 
               onChange(newIndex); 
             }}
             getLabel={(date) => 
