@@ -15,8 +15,9 @@ const apiCall = () => {
 function App() {
   const years = [1817, 1818, 1819, 1820, 1821, 1822, 1823, 1824, 1825, 1826, 1827, 1828, 1829, 1830, 1831, 1832, 1833, 1834, 1835]
   const [index, setIndex] = useState(0);
-  const [fredInfo, setFredInfo] = useState({}); // set default state here later
+  const [fredInfo, setFredInfo] = useState({}); 
   const [events, setEvents] = useState({})
+  const n = years.length;
 
   const handleIndexChange = async (newIndex) => {
     setIndex(newIndex);
@@ -45,7 +46,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/timeline" element={<Timeline index = {index} onChange={handleIndexChange} years={years} fredInfo={fredInfo} events={events}/>} />
+          <Route path="/timeline" element={<Timeline index = {index} onChange={handleIndexChange} years={years} fredInfo={fredInfo} events={events} n ={n}/>} />
           <Route path="/home" element={<Home />} />
         </Routes>
       </div>

@@ -12,18 +12,28 @@ const TimelineMap = ({fredInfo, events}) => {
     const mapRef2 = useRef();
 
     useEffect(() => {
-        mapboxgl.accessToken = '';
 
         mapRef2.current = new mapboxgl.Map({
             ref: {mapRef2},
             container: mapContainerRef2.current,
             style: 'mapbox://styles/mapbox/streets-v9',
-            center: [-104, 36.8283], // Initial center
-            zoom: 3.7, // Initial zoom
+            center: [-104, 38.8283], // Initial center
+            zoom: 3.35, // Initial zoom
         });
 
         return () => {};
     }, []);
+
+    useEffect(() => {
+        if (events && mapRef2.current) {
+            const { latitude: lat, longitude: lng } = fredInfo ? fredInfo : { latitude: 38.8283, longitude: -104 };
+
+            if (lat && lng) {
+                mapRef2.current.flyTo({ center: [lng, lat], zoom: fredInfo ? 14.5: 3.35 });
+            }
+        }
+    }, [events]);
+
 
     return (
         <div className={styles.container} ref={mapContainerRef2}>

@@ -5,8 +5,8 @@
     justify-content: center;
     align-items: center;
     overflow-x: auto;
-    padding: 20px 0;
-    background: #fff;
+    padding: 0px 0;
+    background: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     position: fixed;
@@ -15,12 +15,17 @@
     justify-content: center; 
     right: 0;
     z-index: 10;
+    border-color: #7EC8D7;
+    border-width: 5px;
+    border-style: solid;
   }
 
   .timeline {
     width: 100%; 
     max-width: 800px; 
-    height: 65px;
+    height: 57px;
+    margin-left: 100px;
+    margin-top: 5px;
     font-size: 18px; 
     font-family: 'Georgia, serif';
     z-index: 10;

@@ -3,12 +3,18 @@ import HorizontalTimeline from 'react-horizontal-timeline';
 import styles from '../components/timeline.module.css';
 import Sidebar from './Sidebar';
 import TimelineMap from './TimelineMap';
+import SimulationButton from './SimulationButton';
+import Header from './Header';
+import KeyHeader from './KeyHeader';
 
-const Timeline = ({ index, onChange, years, fredInfo, events}) => {
+const Timeline = ({ index, onChange, years, fredInfo, events, n}) => {
   return (
     <div>
+      <Header />
+      <KeyHeader />
       <TimelineMap fredInfo = {fredInfo} events = {events}/>
       <Sidebar fredInfo={fredInfo} events = {events} />
+      <SimulationButton onChange={onChange} n={n}/>
       <div className={styles['timeline-container']}>
         <div className={styles['timeline']}>
           <HorizontalTimeline
@@ -37,8 +43,8 @@ const Timeline = ({ index, onChange, years, fredInfo, events}) => {
           />
         </div>
         <div style={{ textAlign: 'center', marginTop: '20px' }}>
-          <h2 style={{ color: '#8B5E3C', fontFamily: 'Georgia, serif' }}>
-            Currently Viewing: <span style={{ color: '#3C2F2F' }}>{years[index]}</span>
+          <h2 style={{ color: '#7EC8D7', fontFamily: 'Georgia, serif' }}>
+            Currently Viewing: <span style={{ color: 'black' }}>{years[index]}</span>
           </h2>
         </div>
       </div>

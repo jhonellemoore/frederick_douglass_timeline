@@ -1,8 +1,8 @@
 .sidebar-container{
-    width: 270px;
+    width: 370px;
     background-color: #ffff;
-    height: 155vh;
-    padding: 0 30px; /* top = 0, l and r = 30*/
+    height: 120vh;
+    padding: 80px 30px; /* top = 75, l and r = 30*/
     transition: all 1s;
     z-index: 12;
     left: 0;
@@ -11,6 +11,11 @@
     overflow-y: auto;
     scroll-behavior: smooth;
     height: 100vh;
+    border-color: #7EC8D7;
+    border-width: 5px;
+    border-style: solid;
+    overscroll-behavior: none;
+    box-sizing: border-box;
 }
 
 .text-overlay {
@@ -21,3 +26,4 @@
     font-size: 12px; /* Decreased font size to 12px */
     line-height: 1.6;
 }
+

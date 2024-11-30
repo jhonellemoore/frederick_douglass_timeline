@@ -46,7 +46,7 @@ const TimelineMarkers = ({fredInfo, mapRef, events}) => {
                     if (event.latitude && event.longitude){
                         const lat2 = event.latitude;
                         const lng2 = event.longitude;
-                        const newMarker = new mapboxgl.Marker({color: 'red'})
+                        const newMarker = new mapboxgl.Marker({color: event.event_type})
                         .setLngLat([lng2, lat2])
                         .addTo(mapRef.current);
                         const popup2 = new mapboxgl.Popup({ offset: 25 })
