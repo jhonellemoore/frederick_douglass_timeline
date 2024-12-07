@@ -7,12 +7,18 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import styles from '../components/timelinemap.module.css';
 import TimelineMarkers from './TimelineMarkers'
 
-const TimelineMap = ({fredInfo, events}) => {
+const TimelineMap = ({handleMarkerClick, fredInfo, events, selectedMarker}) => {
     const mapContainerRef2 = useRef();
     const mapRef2 = useRef();
 
-    useEffect(() => {
+    const handleClick = () => {
+        console.log("handling clicl");
+        mapRef2.current.setZoom(3.35);
+        mapRef2.current.setCenter([-104, 38.8283]);
+    };
 
+    useEffect(() => {
+        mapboxgl.accessToken = 'pk.eyJ1IjoibW9vcmVqaG9uZWxsZTg1IiwiYSI6ImNtMndtcjc1ejA4OGsyam9lb2xpNmIxNnQifQ.OWTOkcY97AfLduslDdbPGw';
         mapRef2.current = new mapboxgl.Map({
             ref: {mapRef2},
             container: mapContainerRef2.current,
@@ -25,20 +31,28 @@ const TimelineMap = ({fredInfo, events}) => {
     }, []);
 
     useEffect(() => {
-        if (events && mapRef2.current) {
-            const { latitude: lat, longitude: lng } = fredInfo ? fredInfo : { latitude: 38.8283, longitude: -104 };
-
+        console.log('Selected Marker Updated in Child:', selectedMarker);
+        if (selectedMarker && mapRef2.current) {
+            console.log('Selected marker in child lat long is ', selectedMarker.getLngLat());
+            const { lng, lat } = selectedMarker.getLngLat();
+            console.log('lat and long in child is', lat, lng);
             if (lat && lng) {
-                mapRef2.current.flyTo({ center: [lng, lat], zoom: fredInfo ? 14.5: 3.35 });
+                mapRef2.current.flyTo({ center: [lng, lat], zoom: 9.5 });
             }
         }
-    }, [events]);
-
+    }, [selectedMarker]);
 
     return (
-        <div className={styles.container} ref={mapContainerRef2}>
-            <TimelineMarkers fredInfo={fredInfo} mapRef={mapRef2} events={events}/>
-        </div>
+        <div>
+            <div className={styles.container} ref={mapContainerRef2}>
+                <TimelineMarkers onClick={handleMarkerClick} fredInfo={fredInfo} mapRef={mapRef2} events={events}/>
+            </div >
+            <button onClick={handleClick} className={styles['button']}>
+                <span className={styles['button-text']}>
+                    Reset Zoom
+                </span>
+            </button>
+      </div>
     )
 };
 

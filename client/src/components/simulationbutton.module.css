@@ -2,21 +2,21 @@
     /* background-color: #0091ff68; */
     background-color: 'white';
     color: rgba(255, 255, 255, 0.658);
-    position: fixed;
+    position: absolute;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
     transition: background-color 0.3s ease;
     z-index: 25;
-    width: 150px;
-    height: 150px;
-    /* bottom: 0; */
+    width: 100px;
+    height: 100px;
     margin-top: 455px;
-    margin-left: 550px;
-    border-radius: 20%;
+    bottom: 0;
+    margin-bottom: 200px;
+    margin-left: 580px;
+    border-radius: 100%;
     border-width: 20px;
     border: 2px solid #f3f6f6;
     flex-direction: column;
@@ -26,9 +26,6 @@
     background-color: rgb(228, 223, 223);
   }
 
-  /* .sim-button:hover .button-text {
-    color: #f2f6f6; 
-  } */
 
   .sim-button:hover .sim-button.pause::before {
     border-color: white; 
@@ -44,13 +41,13 @@
     width: 20px;
     height: 23px;
     border-style: double;
-    margin-left: 40px;
+    margin-left: 20px;
     margin-top: 10px;
     padding-bottom: 5px;
     border-width: 0px 0px 0px 23px;
     border-color: #7EC8D7;
     display: block; 
-    padding-inline: 50px;
+    /* padding-inline: 50px; */
   }
   
   .sim-button.play::before {
@@ -62,9 +59,9 @@
     box-sizing: border-box;
     border-width: 12px 7px 12px 28px;
     border-color: transparent transparent transparent #7EC8D7;
-    margin-left: 40px;
+    margin-left: 20px;
     margin-top: 10px;
-    padding-inline: 50px;
+    /* padding-inline: 50px; */
     display: block; 
     padding-bottom: 5px;
   }

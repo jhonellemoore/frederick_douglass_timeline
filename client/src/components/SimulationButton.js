@@ -8,7 +8,6 @@ const SimulationButton = ({onChange, n}) => {
     const isPausedRef = useRef(isPaused);
     
     const toggleSimulation = () => {
-        // setInSimulation(!inSimulation);
         setInSimulation((prev) => {
             inSimulationRef.current = !prev;
             return !prev;
@@ -16,7 +15,6 @@ const SimulationButton = ({onChange, n}) => {
     };
 
     const togglePlayPause = () => {
-        // setIsPaused(!isPaused);
         setIsPaused((prev) => {
             isPausedRef.current = !prev;
             return !prev;
@@ -24,18 +22,25 @@ const SimulationButton = ({onChange, n}) => {
     };
 
     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    
     const runAnimation = async () => {
+        const checkInterval = 100;
         let currentIndex = 0;
 
         while (currentIndex < n) {
-            onChange(currentIndex);
-            currentIndex = (currentIndex + 1) % n; // Wrap around using mod n
-            await delay(6000); 
-            console.log(inSimulationRef.current)
-            console.log(isPausedRef.current)
             if (inSimulationRef.current && isPausedRef.current && currentIndex != 0){
                 break;
             }
+            onChange(currentIndex);
+            currentIndex = (currentIndex + 1) % n; // Wrap around using mod n
+            for (let i = 0; i < 6; i++) {
+                await delay(200); 
+                if (inSimulationRef.current && isPausedRef.current && currentIndex !== 0) {
+                  break;
+                }
+              }
+            console.log(inSimulationRef.current)
+            console.log(isPausedRef.current)
         }
     };
 
@@ -62,7 +67,7 @@ const SimulationButton = ({onChange, n}) => {
       onClick={handleClick}
     >
         <span className={styles['button-text']}>
-            {isPausedRef.current ? 'Press to start simulation' : 'Press to pause simulation'}
+            {isPausedRef.current ? 'Start sim.' : 'Pause sim.'}
         </span>
     </button>
 

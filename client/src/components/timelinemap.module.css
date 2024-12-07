@@ -2,5 +2,38 @@
     width: 100vw;
     height: 100vh;
     position: fixed;
-
+    z-index: 1;
 }
+
+.button{
+    background-color: 'white';
+    color: rgba(255, 255, 255, 0.658);
+    position: absolute;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    z-index: 100;
+    left: 0;
+    margin-left: 400px;
+    width: 100px;
+    height: 100px;
+    margin-top: 455px;
+    bottom: 0;
+    margin-bottom: 200px;
+    border-radius: 100%;
+    border: 2px solid #f3f6f6;
+    flex-direction: column;
+}
+
+.button:hover {
+    background-color: rgb(228, 223, 223);
+  }
+
+.button .button-text {
+    margin-top: 20px; 
+    font-size: 14px; 
+    color: #131414;
+    font-family: "Cantata One", serif;
+  }

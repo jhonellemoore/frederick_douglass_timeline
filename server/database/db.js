@@ -3,7 +3,7 @@ const { Pool } = require('pg');
 
 // Database connection configuration
 const dbConfig = {
-	user: 'postgres',
+  user: 'postgres',
   password: 'DatabasePasswordForPurposes!!',
   host: 'database-2.c9m6sq8awrsq.us-east-2.rds.amazonaws.com',
   port: '5432',
@@ -17,6 +17,7 @@ const pool = new Pool(dbConfig);
 const getFredInfoForDate = async (date) => {
   const statement = `
     SELECT 
+        de.id,
         de.headline, 
         de.description, 
         l.location_name, 
@@ -40,7 +41,7 @@ const getEventsInfoForDate = async (date) => {
 };
 
 const getEventsLocInfoForDate = async(year) => {
-  const resp = await executeQuery("SELECT e.event, e.event_type, e.date, l.location_name, l.latitude, l.longitude FROM events e JOIN locations l ON e.location_id = l.location_id WHERE e.year = $1", [year])
+  const resp = await executeQuery("SELECT e.event, e.event_description, e.id, e.event_type, e.date, l.location_name, l.latitude, l.longitude FROM events e JOIN locations l ON e.location_id = l.location_id WHERE e.year = $1", [year])
   return resp
 }
 

@@ -4,12 +4,12 @@ import ReactMapboxGl, { Layer, Feature, Marker } from 'react-mapbox-gl';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import 'maplibre-gl/dist/maplibre-gl.css';
+import styles from '../components/timelinemarkers.module.css';
 
-const TimelineMarkers = ({fredInfo, mapRef, events}) => {
-    const fredMarkerRef = useRef(null);
-    // const markerRef = useRef([]);
+const TimelineMarkers = ({onClick, fredInfo, mapRef, events}) => {
+    const fredMarkerRef = useRef(0);
     const markerRef = useRef([]);
-
+    
     useEffect(() => {
         if (mapRef && mapRef.current){
             if (fredMarkerRef.current){
@@ -28,16 +28,21 @@ const TimelineMarkers = ({fredInfo, mapRef, events}) => {
                 .setLngLat([lng, lat])
                 .addTo(mapRef.current);
                 const popup = new mapboxgl.Popup({ offset: 25 })
-                .setHTML(`<h3>Location</h3><p>${fredInfo.headline} in ${fredInfo.location_name}</p>`);
+                .setHTML(`<p>${fredInfo.headline} in ${fredInfo.location_name}</p>`);
 
                 fredMarker.setPopup(popup);
+                fredMarker.getElement().id = `fred${fredInfo.id}`;
                 fredMarker.getElement().addEventListener('mouseenter', () => {
                     popup.addTo(mapRef.current);  
                 });
                 fredMarker.getElement().addEventListener('mouseleave', () => {
-                    popup.remove();  
+                    popup.remove();   
                 });
                 fredMarkerRef.current = fredMarker;
+                fredMarker.getElement().addEventListener('click', () => {
+                    onClick(markerRef.current, fredMarker, fredMarkerRef, fredInfo.id);
+                });
+
             }
             // events markers
             if (events && Array.isArray(events)){
@@ -50,7 +55,7 @@ const TimelineMarkers = ({fredInfo, mapRef, events}) => {
                         .setLngLat([lng2, lat2])
                         .addTo(mapRef.current);
                         const popup2 = new mapboxgl.Popup({ offset: 25 })
-                        .setHTML(`<h3>Location</h3><p>${event.event} in ${event.location_name}</p>`);
+                        .setHTML(`<p>${event.event}.<br><strong>Click to see more.</strong> </p>`);
                         console.log("je")
                         newMarker.setPopup(popup2);
                         newMarker.getElement().addEventListener('mouseenter', () => {
@@ -59,7 +64,13 @@ const TimelineMarkers = ({fredInfo, mapRef, events}) => {
                         newMarker.getElement().addEventListener('mouseleave', () => {
                             popup2.remove();  
                         });
+
+                        // adding clickability to marker (add id first)
+                        newMarker.getElement().id = event.id;
                         markerRef.current.push(newMarker);
+                        newMarker.getElement().addEventListener('click', () => {
+                            onClick(markerRef.current, newMarker, fredMarkerRef, event.id);
+                        });
                     }
                 })
             }
@@ -69,7 +80,6 @@ const TimelineMarkers = ({fredInfo, mapRef, events}) => {
     
     return (
         <div style={{ width: '100%', height: '100%' }}>
-            {/* No need for styles.marker, inline styles are used here */}
         </div>
     );
 };

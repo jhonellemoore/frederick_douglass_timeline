@@ -1,0 +1,5 @@
+.highlighted-marker {
+    transform: scale(1.5); /* Enlarge the marker */
+    border: 2px solid yellow; /* Add a border */
+    box-shadow: 0 0 10px 2px rgba(255, 255, 0, 0.8); /* Optional glow effect */
+}
